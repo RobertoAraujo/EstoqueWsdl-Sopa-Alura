@@ -3,6 +3,8 @@ package br.com.caelum.estoque.ws;
 import br.com.caelum.estoque.modelo.item.Item;
 import br.com.caelum.estoque.modelo.item.ItemDao;
 
+import javax.jws.WebMethod;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import java.util.List;
 
@@ -10,9 +12,10 @@ import java.util.List;
 public class EstoqueWs {
     ItemDao dao = new ItemDao();
 
-    public List<Item> getItens(){
-        System.out.println("Chamand os itens" + getItens());
-        List<Item> lista = dao.todosItens();
-        return lista;
+    @WebMethod(operationName = "todosOsItens")
+    @WebResult(name = "itens")
+    public List<Item> getItens() {
+        System.out.println("Chamando todosItens()");
+        return dao.todosItens();
     }
 }
